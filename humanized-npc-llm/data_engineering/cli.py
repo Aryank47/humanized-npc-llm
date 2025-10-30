@@ -1,4 +1,4 @@
-from pipeline import run
+from .pipeline import run
 import argparse
 
 ap = argparse.ArgumentParser()

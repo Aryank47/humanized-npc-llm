@@ -1,4 +1,4 @@
-import yaml, pathlib, itertools, logging
+import yaml, pathlib, logging
 from tqdm import tqdm
 from data_engineering.schema_tools import load_schema, validate_record
 from data_engineering.io_utils import write_jsonl, sha256_file

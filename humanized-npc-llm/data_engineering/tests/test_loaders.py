@@ -6,7 +6,7 @@ from data_engineering.loaders.empathetic_dialogues import load_ed
 
 
 def _check(gen):
-    schema = load_schema("schema/npc_schema.json")
+    schema = load_schema()
     recs = [next(gen) for _ in range(3)]
     assert all(validate_record(schema, r) for r in recs)
 

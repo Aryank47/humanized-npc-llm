@@ -4,7 +4,8 @@ logger = logging.getLogger(__name__)
 
 
 def load_schema(path="schema/npc_schema.json"):
-    return json.loads(pathlib.Path(path).read_text())
+    base = pathlib.Path(__file__).parent
+    return json.loads((base / path).read_text())
 
 
 def validate_record(schema, rec):
