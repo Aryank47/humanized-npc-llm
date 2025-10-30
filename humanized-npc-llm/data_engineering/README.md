@@ -4,19 +4,26 @@
 
 ## Setup
 ```bash
-pip install datasets pandas jsonschema tqdm pyyaml requests selectolax python-slugify orjson
+pip install -r ../requirements.txt
 ```
 
 ## Run
 ```bash
-python run_pipeline.py
+# Publishable mix (no Skyrim):
+python -m data_engineering.cli \
+  --config humanized-npc-llm/data_engineering/config/mix.publishable.yaml \
+  --out    humanized-npc-llm/data_engineering/data/processed/publishable
+# Classwork mix (adds ablation_skyrim.jsonl):
+python -m data_engineering.cli \
+  --config humanized-npc-llm/data_engineering/config/mix.classwork.yaml \
+  --out    humanized-npc-llm/data_engineering/data/processed/classwork
 ```
 
 ## Outputs
-- `outputs/train.jsonl` (~55k examples)
-- `outputs/val.jsonl` (~3k examples)
-- `outputs/test.jsonl` (~3k examples)
-- `outputs/MANIFEST.json`
+- `data/processed/publishable/train.jsonl`
+- `data/processed/publishable/val.jsonl`
+- `data/processed/publishable/test.jsonl`
+- `data/processed/publishable/MANIFEST.json`
 
 ## For Team Members
 Use the files in `outputs/` for training and evaluation.

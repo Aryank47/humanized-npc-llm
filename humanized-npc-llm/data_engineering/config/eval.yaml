@@ -1,7 +1,7 @@
 # Evaluation Configuration
 
-model_path: "../2_fine_tuning/outputs/model"
-test_data: "../1_data_engineering/outputs/test.jsonl"
+model_path: "../fine_tuning/outputs/model"
+test_data: "../../data_engineering/data/processed/publishable/test.jsonl"
 
 metrics:
   - schema_validity

@@ -5,7 +5,7 @@
   "required": ["id", "source", "split", "dialog"],
   "properties": {
     "id": {"type": "string"},
-    "source": {"type": "string", "enum": ["personachat","spc","charcodex","light","skyrim","fallout","ed","uesp"]},
+    "source": {"type": "string", "enum": ["personachat","spc","charcodex","light","skyrim","fallout","ed"]},
     "split": {"type": "string"},
     "persona": {"type":"array","items":{"type":"string"}},
     "world_facts": {"type":"array","items":{"type":"string"}},
