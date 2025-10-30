@@ -1,0 +1,28 @@
+seed: 42
+splits:
+  train_ratio: 0.90
+  val_ratio: 0.05
+  test_ratio: 0.05
+
+targets:
+  total_examples: 62000   # 10k + 15k + 20k + 12k + 5k
+
+weights:
+  personachat: 0.1613   # 10k / 62k
+  spc:         0.2419   # 15k / 62k
+  charcodex:   0.3226   # 20k / 62k
+  light:       0.1935   # 12k / 62k
+  ed:          0.0806   # 5k  / 62k
+
+include:
+  skyrim: false
+
+options:
+  light_max_pairs: 12000
+  ed_max_examples: 5000
+  attach_uesp_world_facts: true
+  # Upstream splits are ignored by design now:
+  respect_upstream_splits: false
+  max_scenario_length: 400
+  max_fact_length: 200
+  max_turns_per_dialogue: 20

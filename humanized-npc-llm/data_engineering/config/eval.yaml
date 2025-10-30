@@ -1,0 +1,17 @@
+# Evaluation Configuration
+
+model_path: "../2_fine_tuning/outputs/model"
+test_data: "../1_data_engineering/outputs/test.jsonl"
+
+metrics:
+  - schema_validity
+  - persona_similarity
+  - hallucination_rate
+  - diversity
+  - latency
+
+human_eval:
+  num_examples: 100
+  annotators: 2
+
+output_dir: "outputs"

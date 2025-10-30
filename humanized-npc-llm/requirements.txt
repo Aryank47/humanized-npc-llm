@@ -4,12 +4,16 @@ tqdm>=4.66
 pandas>=2.2
 
 # Person 1: Data Engineering
-datasets>=2.21.0
-jsonschema>=4.23.0
-requests>=2.32.3
-selectolax>=0.3.21
-python-slugify>=8.0.4
-orjson>=3.10.7
+datasets==2.21.0
+pandas==2.2.3
+orjson==3.10.7
+jsonschema==4.23.0
+tqdm==4.66.5
+requests==2.32.3
+selectolax==0.3.21
+python-slugify==8.0.4
+pyyaml==6.0.2
+parlai
 
 # Person 2: Fine-Tuning (install when needed)
 # torch>=2.1.0
