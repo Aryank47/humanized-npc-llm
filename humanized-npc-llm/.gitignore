@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Data files (too large for git)
+*.jsonl
+*.json
+!schema/*.json
+!config/*.json
+!config/*.yaml
+!**/MANIFEST.json
+
+# Models (too large for git)
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Outputs
+1_data_engineering/outputs/*
+!1_data_engineering/outputs/.gitkeep
+2_fine_tuning/outputs/*
+!2_fine_tuning/outputs/.gitkeep
+3_evaluation/outputs/*
+!3_evaluation/outputs/.gitkeep
+
+# Logs
+*.log
+logs/
+wandb/
+
+# Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+.env

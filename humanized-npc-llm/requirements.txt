@@ -1,0 +1,25 @@
+# Shared dependencies
+pyyaml>=6.0
+tqdm>=4.66
+pandas>=2.2
+
+# Person 1: Data Engineering
+datasets>=2.21.0
+jsonschema>=4.23.0
+requests>=2.32.3
+selectolax>=0.3.21
+python-slugify>=8.0.4
+orjson>=3.10.7
+
+# Person 2: Fine-Tuning (install when needed)
+# torch>=2.1.0
+# transformers>=4.38.0
+# peft>=0.8.0
+# bitsandbytes>=0.42.0
+# accelerate>=0.27.0
+
+# Person 3: Evaluation (install when needed)
+# scikit-learn>=1.4.0
+# sentence-transformers>=2.3.0
+# matplotlib>=3.8.0
+# seaborn>=0.13.0
