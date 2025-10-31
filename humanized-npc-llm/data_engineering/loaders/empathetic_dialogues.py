@@ -2,6 +2,15 @@ from datasets import load_dataset
 from slugify import slugify
 from collections import defaultdict
 
+def _norm_ed(s: str) -> str:
+    if not isinstance(s, str): return ""
+    return (s.replace("_comma_", ",")
+             .replace("_period_", ".")
+             .replace("_exclamation_", "!")
+             .replace("_question_", "?")
+             .replace(" ,", ",")
+             .replace(" .", ".")
+             .strip())
 
 def load_ed(split="train"):
     ds = load_dataset("facebook/empathetic_dialogues", split=split)
@@ -14,9 +23,14 @@ def load_ed(split="train"):
         dialog = []
         for t in turns:
             role = "player" if int(t["speaker_idx"]) == 0 else "npc"
-            dialog.append({"role": role, "text": t["utterance"]})
+            dialog.append({"role": role, "text": _norm_ed(t.get("utterance", ""))})
         if not dialog:
             continue
+        if len({d["role"] for d in dialog}) == 1:
+            dialog = [
+                {"role": ("player" if i % 2 == 0 else "npc"), "text": d["text"]}
+                for i, d in enumerate(dialog)
+            ]
         mood = turns[0].get("context", "Neutral") or "Neutral"
         yield {
             "id": f"ed_{slugify(conv_id)}",

@@ -23,6 +23,11 @@ except Exception:
 
 from data_engineering.loaders.skyrim_il import parse_skyrim_page
 from data_engineering.loaders.uesp import fetch_uesp_facts
+from collections import Counter
+
+
+main_records = []
+src_counter = Counter()
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -74,39 +79,29 @@ def _src_loader(name, split, cfg):
     return []
 
 
-def _collect_source(name, k, cfg, use_upstream_splits=True):
-    """
-    If the upstream dataset has explicit val/test, keep them; fill the rest from train.
-    Otherwise pull from train and do our own TVT split later.
-    """
-    if not use_upstream_splits:
-        return (
-            reservoir_sample(_src_loader(name, "train", cfg), k, seed=cfg["seed"]),
-            [],
-            [],
-        )
-    # Try explicit splits
-    try:
-        train = list(_src_loader(name, "train", cfg))
-        val = list(_src_loader(name, "validation", cfg))
-        test = list(_src_loader(name, "test", cfg))
-        # If val/test are empty, fallback
-        if not val and not test:
-            return reservoir_sample(train, k, seed=cfg["seed"]), [], []
-        # Allocate proportionally: keep all val/test, take remaining from train
-        base = len(val) + len(test)
-        take_train = max(0, k - base)
-        train_sample = (
-            reservoir_sample(train, take_train, seed=cfg["seed"])
-            if take_train > 0
-            else []
-        )
-        return train_sample, val, test
-    except Exception:
-        # Not all loaders support validation/test
-        data = list(_src_loader(name, "train", cfg))
-        return reservoir_sample(data, k, seed=cfg["seed"]), [], []
 
+def _sanitize_record(rec):
+    r = dict(rec)
+    # clean dialog
+    dlg = []
+    for t in r.get("dialog", []):
+        role = str(t.get("role", "")).strip()
+        text = t.get("text")
+        if not role or text is None:
+            continue
+        dlg.append({"role": role, "text": str(text)})
+    r["dialog"] = dlg
+    # clean persona/world_facts (strings only)
+    r["persona"] = [str(x) for x in (r.get("persona") or []) if isinstance(x, (str, int, float))]
+    r["world_facts"] = [str(x) for x in (r.get("world_facts") or []) if isinstance(x, (str, int, float))]
+    # clean context (no None)
+    ctx = {}
+    for k in ("location", "npc_role", "time_of_day"):
+        v = (r.get("context") or {}).get(k)
+        if isinstance(v, str) and v.strip():
+            ctx[k] = v.strip()
+    r["context"] = ctx
+    return r
 
 def _collect_ablation_skyrim(k_skyrim):
     urls_file = pathlib.Path("config/skyrim_urls.txt")
@@ -121,6 +116,13 @@ def _collect_ablation_skyrim(k_skyrim):
             logger.warning(f"Skyrim parse failed for {u}: {e}")
     return out[:k_skyrim]
 
+def _set_split(records, name):
+    out = []
+    for r in records:
+        rr = dict(r)
+        rr["split"] = name
+        out.append(rr)
+    return out
 
 def run(cfg_path, out_dir):
     cfg = yaml.safe_load(pathlib.Path(cfg_path).read_text())
@@ -137,11 +139,15 @@ def run(cfg_path, out_dir):
     # ---- MAIN COLLECTION (Option A: ignore upstream splits, sample from 'train') ----
     main_records = []
     for src, k in counts.items():
-        if src == "skyrim":  # handled separately as ablation
+        if src == "skyrim":  # handled separately
             continue
-        gen = _src_loader(src, "train", cfg)  # always 'train'
+        gen = _src_loader(src, "train", cfg)
         sampled = reservoir_sample(gen, k, seed=cfg["seed"])
-        main_records.extend(sampled)
+        for r in sampled:
+            main_records.append(r)
+            src_counter[r.get("source","?")] += 1
+
+    logger.info(f"[collect] sampled by source: {dict(src_counter)}")
 
     # Optional: attach UESP facts (attribution stored in meta)
     if cfg["options"].get("attach_uesp_world_facts", False):
@@ -158,9 +164,14 @@ def run(cfg_path, out_dir):
     main_records = deduplicate_by_dialog(main_records)
 
     valid = []
+    valid_counter = Counter()
     for r in tqdm(main_records, desc="validate(main)"):
-        if validate_record(schema, r):
-            valid.append(r)
+        rr = _sanitize_record(r)  # if you added sanitizer; otherwise use r
+        if validate_record(schema, rr):
+            valid.append(rr)
+            valid_counter[rr.get("source","?")] += 1
+
+    logger.info(f"[validate] kept by source: {dict(valid_counter)}")
 
     train, val, test = split_tvts(
         valid,
@@ -168,6 +179,10 @@ def run(cfg_path, out_dir):
         cfg["splits"]["val_ratio"],
         seed=cfg["seed"],
     )
+    
+    train = _set_split(train, "train")
+    val   = _set_split(val,   "val")
+    test  = _set_split(test,  "test")
 
     out = pathlib.Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)

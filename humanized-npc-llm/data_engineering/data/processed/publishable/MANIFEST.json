@@ -1,0 +1,13 @@
+{
+  "config": "data_engineering/config/mix.publishable.yaml",
+  "counts": {
+    "train": 31639,
+    "val": 1757,
+    "test": 1759
+  },
+  "sha256": {
+    "train": "6dca3449db262a293b5ae75948eb6cf5339ea3d55c1aaef52f3925b649d9c27c",
+    "val": "19898956c228f01f20c948be06e9df27b48ba3923b9ed7cddd13b55f853705b1",
+    "test": "600cc54729259ca0ab3b9f15de4d62f8d967dd084783876f0263bab941fefad2"
+  }
+}
