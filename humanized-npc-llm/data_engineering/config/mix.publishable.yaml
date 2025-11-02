@@ -5,14 +5,15 @@ splits:
   test_ratio: 0.05
 
 targets:
-  total_examples: 62000   # 10k + 15k + 20k + 12k + 5k
+  total_examples: 62000   # 10k + 8k + 16k + 12k + 5k
 
 weights:
   personachat: 0.1613   # 10k / 62k
-  spc:         0.2419   # 15k / 62k
-  charcodex:   0.3226   # 20k / 62k
+  spc:         0.2419   # 8k / 62k
+  charcodex:   0.3226   # 16k / 62k
   light:       0.1935   # 12k / 62k
   ed:          0.0806   # 5k  / 62k
+  npcd:        0.0190  # 1.18k / 62k
 
 include:
   skyrim: false
@@ -20,8 +21,7 @@ include:
 options:
   light_max_pairs: 12000
   ed_max_examples: 5000
-  attach_uesp_world_facts: true
-  # Upstream splits are ignored by design now:
+  # attach_uesp_world_facts: true
   respect_upstream_splits: false
   max_scenario_length: 400
   max_fact_length: 200

@@ -1,5 +1,6 @@
 import logging
 import re
+
 logger = logging.getLogger(__name__)
 TAG_RE = re.compile(r'_(self|partner)_(say|act|emote)\s*', flags=re.I)
 
@@ -72,7 +73,7 @@ def load_light_say_only(max_pairs=None):
 
         dialog = [
             {"role": "player", "text": text},
-            {"role": "npc", "text": labels[0]},
+            {"role": "npc", "text": reply},
         ]
         
         # build context only with non-empty strings

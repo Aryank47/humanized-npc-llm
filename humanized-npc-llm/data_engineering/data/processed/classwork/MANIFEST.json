@@ -1,0 +1,15 @@
+{
+  "config": "data_engineering/config/mix.classwork.yaml",
+  "counts": {
+    "train": 54878,
+    "val": 3048,
+    "test": 3050,
+    "ablation_skyrim": 14657
+  },
+  "sha256": {
+    "train": "2ebfbe6db33254e9d7e24b4c0c20dab00ffef3f60d954d95c4033901cd4d0a66",
+    "val": "917da62d1a78cbdb0af168b23517793bc544fe2860130aa84e619b0a48122337",
+    "test": "8a71cf4226498643caed517a091c596acde6fe8a79e2e30d6046eb0b6b853f99",
+    "ablation_skyrim": "a01f1c153eee62cf80a84a56dda2c36b7bd8e1468723303ac8b5b2e306c8b0e6"
+  }
+}

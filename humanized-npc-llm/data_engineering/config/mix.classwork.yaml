@@ -5,26 +5,57 @@ splits:
   test_ratio: 0.05
 
 targets:
-  total_examples: 83000
+  total_examples: 87760
+  
+  # TRANSFER LEARNING STRATEGY:
+  # Focus on what base models DON'T know - NPC behaviors!
+  # - 17% HUMANIZATION (minimal - base model has this)
+  # - 32% HYBRID BRIDGE (character consistency in fantasy)
+  # - 51% NPC STRUCTURE (the actual goal!)
 
 include:
   skyrim: true
+  eso: true
 
 options:
+  # NPC-SPECIFIC - MAX EVERYTHING
+  skyrim_max_examples: 22000
+  charcodex_max_examples: 15939
   light_max_pairs: 12000
-  ed_max_examples: 5000
-  attach_uesp_world_facts: true
+  npcd_max_examples: 1915
+  spc_max_examples: 10906
+  
+  # HUMANIZATION - MINIMAL (base model already good)
+  personachat_max_examples: 10000   # REDUCED to 10k (was 25k)
+  ed_max_examples: 15000            # Keep for emotion
+  
   respect_upstream_splits: false
   max_scenario_length: 400
   max_fact_length: 200
   max_turns_per_dialogue: 20
+  skyrim_file: external/skyrim.txt
+  eso_file: external/es.csv
 
 weights:
-  personachat: 0.12
-  spc:         0.18
-  charcodex:   0.24
-  light:       0.14
-  ed:          0.06
+  # HUMANIZATION (17.1%) - Minimal, let base model shine
+  personachat:  0.0239   # 10,000 - reduced generic chat
+  ed:           0.1709   # 15,000 - emotion is still useful
+  
+  # HYBRID BRIDGE (32.0%) - Critical for character consistency
+  charcodex:    0.1816   # 15,939 - ALL (roleplay consistency)
+  light:        0.1367   # 12,000 - ALL (fantasy NPCs with roles)
+  
+  # PERSONA (important bridge)
+  spc:          0.1243   # 10,906 - ALL (persona consistency)
+  
+  # NPC STRUCTURE (50.9%) - THE MAIN GOAL
+  npcd:         0.0218   #  1,915 - ALL (NPC tags)
+  eso:         0.0900
 
 ablation_weights:
-  skyrim: 0.26   # ~22k of 83k reserved for classwork-only shard
+  skyrim:       0.2506   # 22,000 - ALL (game mechanics!)
+
+# TOTAL: 87,760 examples
+# Humanization: 15,000 (17.1%)
+# Hybrid: 28,845 (32.9%)
+# NPC: 43,915 (50.0%)
