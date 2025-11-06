@@ -35,7 +35,7 @@ import json
 import sys
 
 # Add the directory containing data_loader.py to the Python path
-sys.path.append('humanized-npc-llm/fine_tuning')
+sys.path.append('../fine_tuning')
 
 
 from datasets import load_dataset
