@@ -16,11 +16,13 @@ pyyaml==6.0.2
 parlai
 
 # Person 2: Fine-Tuning (install when needed)
-# torch>=2.1.0
-# transformers>=4.38.0
+torch>=2.1.0
+transformers>=4.38.0
 # peft>=0.8.0
 # bitsandbytes>=0.42.0
 # accelerate>=0.27.0
+unsloth
+selectolax
 
 # Person 3: Evaluation (install when needed)
 # scikit-learn>=1.4.0
