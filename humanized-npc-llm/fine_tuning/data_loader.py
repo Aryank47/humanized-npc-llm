@@ -1,6 +1,6 @@
 # """
 # Data loader for training.
-# Loads JSONL from Person 1 and converts to instruction format.
+# Loads JSONL from Person 1 and convert to instruction format.
 # """
 
 # def load_jsonl(path):

@@ -29,8 +29,7 @@
 # Owner: Subodh Kant
 
 # --- Model Configuration ---
-# Base Model: We're using Phi-3-mini (3.8B) as it fits 3-4B
-# requirement and is a top-performing SLM. Unsloth has an optimized version.
+
 base_model_id: "Qwen/Qwen2.5-3B-Instruct"
 
 # Output directory for the final LoRA adapters
@@ -41,7 +40,7 @@ output_dir: "./outputs/model/"
 lora_r: 16
 lora_alpha: 32 # 2 * r
 lora_dropout: 0.05
-# Target modules for Phi-3. Unsloth handles this well automatically,
+
 # but we specify for clarity.
 lora_target_modules: ["q_proj", "k_proj", "v_proj", "o_proj",
                       "gate_proj", "up_proj", "down_proj"]

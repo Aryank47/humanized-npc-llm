@@ -5,7 +5,7 @@
 
 # def main():
 #     print("Inference script - TODO: Implement")
-#     print("Usage: python inference.py --prompt 'Hello, blacksmith!'")
+#     print("Usage: python inference.py --prompt 'Hell, blacksmith!'")
 
 # if __name__ == "__main__":
 #     main()

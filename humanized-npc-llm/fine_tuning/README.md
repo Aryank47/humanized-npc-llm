@@ -65,7 +65,7 @@ The script will:
 
 Load the configuration from ../config/training.yaml.
 
-Load the base model (Phi-3-mini) and configure it with QLoRA.
+Load the base model and configure it with QLoRA.
 
 Load train.jsonl and val.jsonl from Task 1.
 
