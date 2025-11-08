@@ -1,21 +1,20 @@
 import os
 import sys
-import yaml
-import torch
-import weave
 
+import torch
 # VERY IMPORTANT: import unsloth first so it can patch PyTorch/transformers
 import unsloth
-from unsloth import FastLanguageModel
-
+import weave
+import yaml
 from datasets import load_dataset
 from transformers import TrainingArguments
 from trl import SFTTrainer
+from unsloth import FastLanguageModel
 
 # If data_loader.py is in the same fine_tuning/ folder, this is optional but harmless
 sys.path.append('../fine_tuning')
 from data_loader import create_chat_messages
-os.environ['WANDB_API_KEY'] = 'ae9d1ac3294b4f667e5a3a639b0cf1a74a57b910'
+
 
 def load_config(config_path: str):
     """Loads the training config file."""
