@@ -23,6 +23,7 @@ transformers>=4.38.0
 # accelerate>=0.27.00
 unsloth
 selectolax
+wandb
 
 # Person 3: Evaluation (install when needed)
 # scikit-learn>=1.4.0
