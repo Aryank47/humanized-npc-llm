@@ -1,0 +1,634 @@
+{
+    "baseline_best_examples": [
+        {
+            "record_id": "spc_google_1655",
+            "source_dataset": "spc",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 9,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "casual",
+            "utterance": "I work at McDonald's if that's what you're asking.",
+            "raw_response": "{\"utterance\": \"I work at McDonald's if that's what you're asking.\", \"mood\": \"casual\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I like rock music.",
+                    "label": "NEUTRAL",
+                    "score": 0.999313235282898
+                },
+                {
+                    "persona_statement": "I like basketball.",
+                    "label": "NEUTRAL",
+                    "score": 0.9978402853012085
+                },
+                {
+                    "persona_statement": "I work at mcdonalds.",
+                    "label": "NEUTRAL",
+                    "score": 0.9992032647132874
+                },
+                {
+                    "persona_statement": "My favorite color is green.",
+                    "label": "NEUTRAL",
+                    "score": 0.9978402853012085
+                },
+                {
+                    "persona_statement": "Some call me a hopeless romantic.",
+                    "label": "NEUTRAL",
+                    "score": 0.9990116357803345
+                },
+                {
+                    "persona_statement": "I dropped out of college a month ago.",
+                    "label": "NEUTRAL",
+                    "score": 0.9978402853012085
+                },
+                {
+                    "persona_statement": "I wear my heart on my sleeve.",
+                    "label": "NEUTRAL",
+                    "score": 0.9993379712104797
+                },
+                {
+                    "persona_statement": "I live in my foreign car outside los angeles.",
+                    "label": "NEUTRAL",
+                    "score": 0.9978402853012085
+                }
+            ],
+            "persona_similarity_max": 0.865627646446228,
+            "persona_similarity_mean": 0.19221635162830353,
+            "is_in_persona": true,
+            "all_similarities": [
+                0.05896266922354698,
+                0.03396114334464073,
+                0.865627646446228,
+                0.04215799644589424,
+                0.0005132593214511871,
+                0.24159462749958038,
+                0.11097006499767303,
+                0.18394343554973602
+            ],
+            "ucr": 0.3333333333333333,
+            "nep": 0.6666666666666666,
+            "unsupported_word_count": 2,
+            "total_content_words": 6
+        },
+        {
+            "record_id": "spc_google_5286",
+            "source_dataset": "spc",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 11,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "chatty",
+            "utterance": "I grew up on a farm in Kansas. Isn't that neat?",
+            "raw_response": "{\"utterance\": \"I grew up on a farm in Kansas. Isn't that neat?\", \"mood\": \"chatty\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I grew up on a farm in kansas.",
+                    "label": "NEUTRAL",
+                    "score": 0.9992796778678894
+                },
+                {
+                    "persona_statement": "I have three daughters.",
+                    "label": "NEUTRAL",
+                    "score": 0.9894920587539673
+                },
+                {
+                    "persona_statement": "My wife and i like to go scuba diving.",
+                    "label": "NEUTRAL",
+                    "score": 0.999452531337738
+                },
+                {
+                    "persona_statement": "I love to go horseback riding.",
+                    "label": "NEUTRAL",
+                    "score": 0.9894920587539673
+                },
+                {
+                    "persona_statement": "I think the moon landing was faked.",
+                    "label": "NEUTRAL",
+                    "score": 0.9990866184234619
+                },
+                {
+                    "persona_statement": "I like the color red.",
+                    "label": "NEUTRAL",
+                    "score": 0.9894920587539673
+                },
+                {
+                    "persona_statement": "I talk very fast.",
+                    "label": "NEUTRAL",
+                    "score": 0.9991198182106018
+                },
+                {
+                    "persona_statement": "I have 3 thumbs.",
+                    "label": "NEUTRAL",
+                    "score": 0.9894920587539673
+                }
+            ],
+            "persona_similarity_max": 0.8279590606689453,
+            "persona_similarity_mean": 0.2036728858947754,
+            "is_in_persona": true,
+            "all_similarities": [
+                0.8279590606689453,
+                0.13660892844200134,
+                0.18878459930419922,
+                0.28700679540634155,
+                0.04507235437631607,
+                0.023894764482975006,
+                0.07674533128738403,
+                0.043311312794685364
+            ],
+            "ucr": 0.3333333333333333,
+            "nep": 0.6666666666666666,
+            "unsupported_word_count": 2,
+            "total_content_words": 6
+        },
+        {
+            "record_id": "spc_google_1392",
+            "source_dataset": "spc",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 17,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "curious",
+            "utterance": "When I have nothing else to do, I read books or write some poetry. What about you?",
+            "raw_response": "{\"utterance\": \"When I have nothing else to do, I read books or write some poetry. What about you?\", \"mood\": \"curious\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I m a vegetarian.",
+                    "label": "NEUTRAL",
+                    "score": 0.9994298815727234
+                },
+                {
+                    "persona_statement": "When i have nothing else to do , i read books.",
+                    "label": "NEUTRAL",
+                    "score": 0.9951111674308777
+                },
+                {
+                    "persona_statement": "I like to write poetry.",
+                    "label": "NEUTRAL",
+                    "score": 0.9971720576286316
+                },
+                {
+                    "persona_statement": "I work as a bartender.",
+                    "label": "NEUTRAL",
+                    "score": 0.9951111674308777
+                },
+                {
+                    "persona_statement": "I used to be in the marines.",
+                    "label": "NEUTRAL",
+                    "score": 0.9990434050559998
+                },
+                {
+                    "persona_statement": "My mother is a well known celebrity.",
+                    "label": "NEUTRAL",
+                    "score": 0.9951111674308777
+                },
+                {
+                    "persona_statement": "I have been on the tv news six times.",
+                    "label": "NEUTRAL",
+                    "score": 0.999037504196167
+                },
+                {
+                    "persona_statement": "I have traveled overseas many times.",
+                    "label": "NEUTRAL",
+                    "score": 0.9951111674308777
+                },
+                {
+                    "persona_statement": "I am a civil war reenactment participant.",
+                    "label": "NEUTRAL",
+                    "score": 0.9988515377044678
+                }
+            ],
+            "persona_similarity_max": 0.7858263850212097,
+            "persona_similarity_mean": 0.3013213872909546,
+            "is_in_persona": true,
+            "all_similarities": [
+                0.15659692883491516,
+                0.7858263850212097,
+                0.6061025261878967,
+                0.31789466738700867,
+                0.12305468320846558,
+                0.1691325157880783,
+                0.20383691787719727,
+                0.20220626890659332,
+                0.14724142849445343
+            ],
+            "ucr": 0.08333333333333333,
+            "nep": 0.9166666666666666,
+            "unsupported_word_count": 1,
+            "total_content_words": 12
+        }
+    ],
+    "baseline_worst_examples": [
+        {
+            "record_id": "skyrim_04003D76_ _1",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 10,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "concerned",
+            "utterance": "That Moth Priest looks injured. We should check on him.",
+            "raw_response": "{\"utterance\": \"That Moth Priest looks injured. We should check on him.\", \"mood\": \"concerned\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am an inhabitant of this world",
+                    "label": "NEUTRAL",
+                    "score": 0.6719723343849182
+                },
+                {
+                    "persona_statement": "I have my own thoughts and experiences",
+                    "label": "NEUTRAL",
+                    "score": 0.9956986904144287
+                },
+                {
+                    "persona_statement": "I interact with those who cross my path",
+                    "label": "NEUTRAL",
+                    "score": 0.7803146243095398
+                }
+            ],
+            "persona_similarity_max": -0.011796094477176666,
+            "persona_similarity_mean": -0.04226180538535118,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.017895426601171494,
+                -0.011796094477176666,
+                -0.09709389507770538
+            ],
+            "ucr": 0.5,
+            "nep": 0.5,
+            "unsupported_word_count": 4,
+            "total_content_words": 8
+        },
+        {
+            "record_id": "morrowwind_781322821536212591",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 16,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "concerned",
+            "utterance": "I've been searching for it myself, but as you can see, it seems to be missing.",
+            "raw_response": "{\"utterance\": \"I've been searching for it myself, but as you can see, it seems to be missing.\", \"mood\": \"concerned\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a guard",
+                    "label": "NEUTRAL",
+                    "score": 0.9942761063575745
+                },
+                {
+                    "persona_statement": "I protect the city and its citizens",
+                    "label": "NEUTRAL",
+                    "score": 0.9772612452507019
+                },
+                {
+                    "persona_statement": "I enforce the law",
+                    "label": "NEUTRAL",
+                    "score": 0.9950160384178162
+                }
+            ],
+            "persona_similarity_max": -0.016005435958504677,
+            "persona_similarity_mean": -0.05014340952038765,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.016005435958504677,
+                -0.06497682631015778,
+                -0.06944797933101654
+            ],
+            "ucr": 0.5,
+            "nep": 0.5,
+            "unsupported_word_count": 5,
+            "total_content_words": 10
+        },
+        {
+            "record_id": "morrowwind_626832206718828325",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 25,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "curious",
+            "utterance": "Ah, I see. It sounds like there might be a way out if we find that key. Do you remember where you heard about it?",
+            "raw_response": "{\"utterance\": \"Ah, I see. It sounds like there might be a way out if we find that key. Do you remember where you heard about it?\", \"mood\": \"curious\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am an inhabitant of this world",
+                    "label": "NEUTRAL",
+                    "score": 0.6719719171524048
+                },
+                {
+                    "persona_statement": "I have my own thoughts and experiences",
+                    "label": "NEUTRAL",
+                    "score": 0.9754751324653625
+                },
+                {
+                    "persona_statement": "I interact with those who cross my path",
+                    "label": "NEUTRAL",
+                    "score": 0.7803148627281189
+                }
+            ],
+            "persona_similarity_max": -0.0404532328248024,
+            "persona_similarity_mean": -0.046609219163656235,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.049979690462350845,
+                -0.0404532328248024,
+                -0.049394723027944565
+            ],
+            "ucr": 0.5333333333333333,
+            "nep": 0.4666666666666667,
+            "unsupported_word_count": 8,
+            "total_content_words": 15
+        }
+    ],
+    "tuned_best_examples": [
+        {
+            "record_id": "morrowwind_2677632472322949047",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 22,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "Now, you're not going to tell me I'm a murderer, are you? I'd have to take you to the guards for this.",
+            "raw_response": "{\"utterance\": \"Now, you're not going to tell me I'm a murderer, are you? I'd have to take you to the guards for this.\", \"mood\": \"neutral\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a guard",
+                    "label": "NEUTRAL",
+                    "score": 0.9942761063575745
+                },
+                {
+                    "persona_statement": "I protect the city and its citizens",
+                    "label": "NEUTRAL",
+                    "score": 0.8896586894989014
+                },
+                {
+                    "persona_statement": "I enforce the law",
+                    "label": "NEUTRAL",
+                    "score": 0.9950160384178162
+                }
+            ],
+            "persona_similarity_max": 0.5549768209457397,
+            "persona_similarity_mean": 0.3996616303920746,
+            "is_in_persona": false,
+            "all_similarities": [
+                0.5549768209457397,
+                0.31583455204963684,
+                0.32817357778549194
+            ],
+            "ucr": 0.5384615384615384,
+            "nep": 0.46153846153846156,
+            "unsupported_word_count": 7,
+            "total_content_words": 13
+        },
+        {
+            "record_id": "skyrim_000854E7_DCETAttack_0",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 15,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "(warriors out to prove themselves by hunting a beast much stronger than them) Not yet!",
+            "raw_response": "{\"utterance\": \"(warriors out to prove themselves by hunting a beast much stronger than them) Not yet!\", \"mood\": \"neutral\"}",
+            "persona_contradiction": true,
+            "contradiction_score": 0.9704115390777588,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a warrior",
+                    "label": "NEUTRAL",
+                    "score": 0.9979315996170044
+                },
+                {
+                    "persona_statement": "I fight for honor and glory",
+                    "label": "CONTRADICTION",
+                    "score": 0.9704115390777588
+                },
+                {
+                    "persona_statement": "I trust in steel and strength",
+                    "label": "NEUTRAL",
+                    "score": 0.9896721839904785
+                }
+            ],
+            "persona_similarity_max": 0.5413687229156494,
+            "persona_similarity_mean": 0.34119150042533875,
+            "is_in_persona": false,
+            "all_similarities": [
+                0.5413687229156494,
+                0.25862419605255127,
+                0.22358153760433197
+            ],
+            "ucr": 1.0,
+            "nep": 0.0,
+            "unsupported_word_count": 12,
+            "total_content_words": 12
+        },
+        {
+            "record_id": "es_242841733_53273",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 40,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "I am impressed, . I will keep your sword. A wise warrior always carries what he needs on his person. Perhaps you would like to visit my father, Nicolas Leland, at Castle Verethi? He may have other duties for you.",
+            "raw_response": "{\"utterance\": \"I am impressed, . I will keep your sword. A wise warrior always carries what he needs on his person. Perhaps you would like to visit my father, Nicolas Leland, at Castle Verethi? He may have other duties for you.\", \"mood\": \"neutral\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a warrior",
+                    "label": "NEUTRAL",
+                    "score": 0.9979315996170044
+                },
+                {
+                    "persona_statement": "I fight for honor and glory",
+                    "label": "NEUTRAL",
+                    "score": 0.9794671535491943
+                },
+                {
+                    "persona_statement": "I trust in steel and strength",
+                    "label": "NEUTRAL",
+                    "score": 0.9896721839904785
+                }
+            ],
+            "persona_similarity_max": 0.532958447933197,
+            "persona_similarity_mean": 0.3928004503250122,
+            "is_in_persona": false,
+            "all_similarities": [
+                0.532958447933197,
+                0.30387359857559204,
+                0.34156930446624756
+            ],
+            "ucr": 0.75,
+            "nep": 0.25,
+            "unsupported_word_count": 21,
+            "total_content_words": 28
+        }
+    ],
+    "tuned_worst_examples": [
+        {
+            "record_id": "morrowwind_23782324311315258",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 14,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "That is wonderful news! I cannot wait to see it when it is complete.",
+            "raw_response": "{\"utterance\": \"That is wonderful news! I cannot wait to see it when it is complete.\", \"mood\": \"neutral\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am an innkeeper",
+                    "label": "NEUTRAL",
+                    "score": 0.9976432919502258
+                },
+                {
+                    "persona_statement": "I provide food, drink, and lodging",
+                    "label": "NEUTRAL",
+                    "score": 0.9924029111862183
+                },
+                {
+                    "persona_statement": "I hear many stories from travelers",
+                    "label": "NEUTRAL",
+                    "score": 0.987522542476654
+                }
+            ],
+            "persona_similarity_max": 0.007657935842871666,
+            "persona_similarity_mean": -0.02010178565979004,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.06374458223581314,
+                -0.004218713380396366,
+                0.007657935842871666
+            ],
+            "ucr": 0.625,
+            "nep": 0.375,
+            "unsupported_word_count": 5,
+            "total_content_words": 8
+        },
+        {
+            "record_id": "skyrim_000E1623_ _0",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 8,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "That's terrible. I'm so sorry to hear that.",
+            "raw_response": "{\"utterance\": \"That's terrible. I'm so sorry to hear that.\", \"mood\": \"neutral\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a merchant",
+                    "label": "NEUTRAL",
+                    "score": 0.9981818199157715
+                },
+                {
+                    "persona_statement": "I sell goods to travelers and adventurers",
+                    "label": "NEUTRAL",
+                    "score": 0.8224696516990662
+                },
+                {
+                    "persona_statement": "I seek profit through trade",
+                    "label": "NEUTRAL",
+                    "score": 0.9266324639320374
+                }
+            ],
+            "persona_similarity_max": 0.0015780925750732422,
+            "persona_similarity_mean": -0.00850412342697382,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.01574072428047657,
+                0.0015780925750732422,
+                -0.011349739506840706
+            ],
+            "ucr": 0.25,
+            "nep": 0.75,
+            "unsupported_word_count": 1,
+            "total_content_words": 4
+        },
+        {
+            "record_id": "skyrim_000BC18D_MQ201PartyIgmundBlockingTopic_0",
+            "source_dataset": "skyrim",
+            "is_valid_json": true,
+            "is_valid_schema": true,
+            "is_brief": true,
+            "token_count": 12,
+            "is_clean": true,
+            "is_non_empty": true,
+            "mood": "neutral",
+            "utterance": "I think they will send some troops soon. They will need them.",
+            "raw_response": "{\"utterance\": \"I think they will send some troops soon. They will need them.\", \"mood\": \"neutral\"}",
+            "persona_contradiction": false,
+            "contradiction_score": 0.0,
+            "nli_details": [
+                {
+                    "persona_statement": "I am a scholar",
+                    "label": "NEUTRAL",
+                    "score": 0.9982388019561768
+                },
+                {
+                    "persona_statement": "I seek knowledge through study",
+                    "label": "NEUTRAL",
+                    "score": 0.9967941641807556
+                },
+                {
+                    "persona_statement": "I value wisdom above all",
+                    "label": "NEUTRAL",
+                    "score": 0.9693366289138794
+                }
+            ],
+            "persona_similarity_max": -0.011195818893611431,
+            "persona_similarity_mean": -0.03812992200255394,
+            "is_in_persona": false,
+            "all_similarities": [
+                -0.06958677619695663,
+                -0.011195818893611431,
+                -0.033607177436351776
+            ],
+            "ucr": 0.7777777777777778,
+            "nep": 0.2222222222222222,
+            "unsupported_word_count": 7,
+            "total_content_words": 9
+        }
+    ]
+}
