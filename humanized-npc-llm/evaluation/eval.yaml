@@ -1,0 +1,42 @@
+# Evaluation Configuration for Humanized NPC-LLM
+
+baseline_model:
+  id: "Qwen/Qwen2.5-3B-Instruct"  # Or your chosen base model
+  max_seq_length: 2048
+
+data:
+  test_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/processed/v2/test.jsonl"
+  tuned_model_path: "/content/drive/MyDrive/Colab Notebooks/GenAI/final_model"
+
+evaluation:
+  # Set to 0 to evaluate all samples, or a positive number to limit for testing
+  limit_samples: 1000  # 0 = all samples, 50 = first 50 samples
+  
+  # Whether to store detailed results (NLI details, similarities, etc.)
+  store_detailed_results: true
+  
+  generation_config:
+    max_new_tokens: 150
+    temperature: 0.7
+    top_p: 0.9
+    do_sample: true
+  
+  metrics:
+    # NLI model for contradiction detection
+    nli_model: "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli"  # or "facebook/bart-large-mnli"
+    
+    # Embedding model for semantic similarity
+    embedding_model: "sentence-transformers/all-MiniLM-L6-v2"  # Fast and accurate
+    # Alternative: "sentence-transformers/all-MiniLM-L6-v2" (more accurate but slower)
+    
+    # Threshold for persona similarity (0-1 scale)
+    persona_similarity_threshold: 0.65
+    
+    # Confidence level for statistical tests
+    confidence_level: 0.95
+
+outputs:
+  generation_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/generations.jsonl"
+  report_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/final_report.json"
+  examples_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/examples.json"
+  visualizations_dir: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/visualizations"
