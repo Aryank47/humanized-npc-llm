@@ -57,15 +57,15 @@ python run_eval.py
 
 What to Expect:
 
-Model Loading: The script will first load the NLI and Embedding models.
+**Model Loading:** The script will first load the NLI and Embedding models.
 
-Generation Loop: You will see a tqdm progress bar as the script iterates through every sample in test.jsonl, generating a response from both the baseline and the fine-tuned model.
+**Generation Loop:** You will see a tqdm progress bar as the script iterates through every sample in test.jsonl, generating a response from both the baseline and the fine-tuned model.
 
-Metrics Calculation: All metrics (JSON validity, persona similarity, NEP, UCR, Distinct etc.) are calculated for each pair of generations.
+**Metrics Calculation:** All metrics (JSON validity, persona similarity, NEP, UCR, Distinct etc.) are calculated for each pair of generations.
 
-Completion: The script will print a final summary table to your console and save the detailed results.
+**Completion:** The script will print a final summary table to your console and save the detailed results.
 
-Deliverables
+**Deliverables**
 
 This script produces two key files in evaluation/outputs/results/:
 
@@ -75,4 +75,3 @@ A large JSONL file, with one line per test sample.
 
 Contains the full text of the baseline_response and tuned_response.
 
-References
