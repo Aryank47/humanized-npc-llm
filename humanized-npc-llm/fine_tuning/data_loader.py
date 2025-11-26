@@ -1,16 +1,5 @@
-# """
-# Data loader for training.
-# Loads JSONL from Person 1 and convert to instruction format.
-# """
-
-# def load_jsonl(path):
-#     """Load JSONL file."""
-#     pass
-
-# def to_instruction_format(record):
-#     """Convert NPC dialogue record to instruction format."""
-#     pass
 import json
+
 
 def create_chat_messages(record: dict) -> list | None:
     """
@@ -100,4 +89,5 @@ def create_chat_messages(record: dict) -> list | None:
     
     messages.append({"role": "assistant", "content": target_json_str})
     
+    return messages
     return messages

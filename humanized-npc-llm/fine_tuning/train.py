@@ -1,10 +1,11 @@
+import json
 import os
 import sys
-import yaml
-import torch
-import json
-from typing import Dict, List, Any
 import warnings
+from typing import Any, Dict, List
+
+import torch
+import yaml
 
 # ============================================================================
 # Torch / Dynamo configuration (fix for recompile_limit / NaNs)
@@ -19,17 +20,15 @@ except Exception:
 
 # VERY IMPORTANT: import unsloth after Dynamo config
 import unsloth
-from unsloth import FastLanguageModel
-
-from datasets import load_dataset
-from transformers import TrainingArguments, TrainerCallback
-from trl import SFTTrainer
 import wandb
+from datasets import load_dataset
+from transformers import TrainerCallback, TrainingArguments
+from trl import SFTTrainer
+from unsloth import FastLanguageModel
 
 # If data_loader.py is in the same fine_tuning/ folder
 sys.path.append('../fine_tuning')
 from data_loader import create_chat_messages
-
 
 # ============================================================================
 # NaN Detection Callback (hard stop on NaN/Inf)
@@ -164,7 +163,7 @@ class DialogueMetricsCallback(TrainerCallback):
             if self.test_prompts and state.global_step > 0:
                 self._log_sample_generations(model, state.global_step)
         except Exception as e:
-            print(f"⚠️  DialogueMetricsCallback error at step {state.global_step}: {e}")
+            print(f"DialogueMetricsCallback error at step {state.global_step}: {e}")
 
     def _log_gradient_norms(self, model, step: int):
         total_norm = 0.0
@@ -328,7 +327,7 @@ Player: "{prompt_data['query']}"
                     step=step,
                 )
             except Exception as e:
-                print(f"⚠️  W&B logging error: {e}")
+                print(f"W&B logging error: {e}")
 
         model.train()
 
@@ -363,13 +362,13 @@ def format_dataset(example, tokenizer):
         )
 
         if len(formatted_text) > 8192:
-            print(f"⚠️  Skipping sample with length {len(formatted_text)} (too long)")
+            print(f"Skipping sample with length {len(formatted_text)} (too long)")
             return {"text": None}
 
         return {"text": formatted_text + tokenizer.eos_token}
 
     except Exception as e:
-        print(f"⚠️  Error formatting sample: {e}")
+        print(f"Error formatting sample: {e}")
         return {"text": None}
 
 

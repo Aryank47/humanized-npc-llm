@@ -7,8 +7,6 @@
 # - LoRA paper (Hu et al., ICLR 2022): arXiv:2106.09685
 # - PersonaChat (Zhang et al., ACL 2018): arXiv:1801.07243
 # - Parameter Efficient Instruction Tuning (2024): arXiv:2411.16775
-#
-# Overall assessment: 9.5/10 - Production-ready configuration
 # ============================================================================
 
 # --- Model Configuration ---
@@ -36,7 +34,7 @@ lora_dropout: 0.05
 
 lora_target_modules: ["q_proj", "k_proj", "v_proj", "o_proj",
                       "gate_proj", "up_proj", "down_proj"]
-# ⭐ CRITICAL: All attention + MLP layers (Dettmers et al., NeurIPS 2023)
+# CRITICAL: All attention + MLP layers (Dettmers et al., NeurIPS 2023)
 # This is THE most important hyperparameter decision per QLoRA research.
 # All-layer: 73.7% WikiSQL | Query-only: 70.4% WikiSQL
 # Targeting comprehensive layers essential for matching full fine-tuning performance.
@@ -125,125 +123,3 @@ save_steps: 200
 save_total_limit: 3
 # Keep best checkpoint + 2 most recent for recovery options.
 # Prevents disk space issues while maintaining flexibility.
-
-# --- Expected Training Metrics ---
-# Based on research and your dataset composition:
-#
-# Training Loss:
-#   - Initial: 2.5-3.0 (typical for instruction-tuned base models)
-#   - Target: 1.0-1.5 after 3 epochs
-#   - Healthy: Steady decrease without sudden jumps
-#
-# Evaluation Loss:
-#   - Should track training loss closely
-#   - Gap < 0.3 indicates healthy generalization
-#   - Gap > 0.5 suggests overfitting → reduce epochs or increase regularization
-#
-# Perplexity (exp(loss)):
-#   - Target: < 40 PPL (PersonaChat baseline: 34-40 PPL)
-#   - Fine-tuned dialogue models typically: 12-40 PPL
-#
-# Learning Rate Schedule:
-#   - Warmup: 0 → 2e-4 over first 3% of steps
-#   - Cosine decay: 2e-4 → ~0 by final step
-#
-# GPU Memory:
-#   - Expected: 7-8GB on T4 (16GB total) with QLoRA
-#   - Alert if > 14GB (indicates potential memory leak)
-#
-# Training Time (Tesla T4):
-#   - Steps per epoch: ~4,688
-#   - Time per step: ~4 seconds
-#   - Total: ~15-16 hours for 3 epochs
-#   - Cost: ~$10-11 @ $0.65/hr
-
-# --- Post-Training Evaluation Plan ---
-# Implement these metrics (in priority order):
-#
-# Tier 1 - Essential (Phase 1):
-#   1. Schema Validity: 100% required (JSON parse + structure check)
-#   2. Persona Contradiction Rate (PCR): Target <15%
-#      - Use Dialogue NLI (Welleck et al., 2019): arXiv:1811.00671
-#      - Fine-tuned BERT on 310K dialogue NLI examples
-#      - Classify: entailment / neutral / contradiction
-#      - Human baseline: 25%, Best models: 15-16%
-#   3. Distinct-2 / Distinct-3: Target >0.15 / >0.20
-#      - Li et al. (NAACL 2016) diversity metric
-#      - Corpus-level unique n-grams / total n-grams
-#      - Prevents repetitive/generic responses
-#
-# Tier 2 - Recommended (Phase 2):
-#   4. Perplexity: Target <40 (compare to base model)
-#   5. BERTScore: Target F1 >0.85 (semantic quality)
-#   6. Unsupported Content Rate (UCR): NLI neutral classification rate
-#
-# Tier 3 - Supplementary (Phase 3):
-#   7. Named Entity Precision (NEP): Track persona-specific entities
-#   8. Latency: P95 <100ms for production readiness
-#   9. Human Evaluation: Fluency, engagingness, consistency (1-5 scale)
-#      - Sample size: 50-100 dialogues per model version
-
-# --- Monitoring Alerts ---
-# Set up alerts for these conditions:
-#
-# Training Issues:
-#   - Gradient norm > 10.0 (instability risk)
-#   - Loss = NaN or Inf (immediate stop)
-#   - Eval loss increases for 3 consecutive evals (overfitting)
-#   - GPU memory > 14GB (memory leak)
-#
-# Quality Issues (from sample generations):
-#   - JSON validity rate < 95% (structural failure)
-#   - Repetitive responses (same output for different personas)
-#   - Mode collapse (identical outputs)
-#   - Generic responses lacking persona voice
-
-# --- Hyperparameter Ablation Suggestions ---
-# If results are suboptimal, try these adjustments:
-#
-# Overfitting (eval loss > train loss + 0.5):
-#   - Reduce epochs: 3 → 2
-#   - Increase dropout: 0.05 → 0.10
-#   - Increase weight_decay: 0.01 → 0.05
-#
-# Underfitting (both losses high after 3 epochs):
-#   - Increase rank: 16 → 32
-#   - Increase learning rate: 2e-4 → 3e-4
-#   - Add more training epochs: 3 → 4
-#
-# Generic/Conversational (not enough NPC voice):
-#   - Increase game data proportion: 46% → 60-70%
-#   - Reduce PersonaChat/SPC weights
-#
-# Hallucination (making up facts):
-#   - Strengthen WorldFacts conditioning
-#   - Add more constrained examples
-#   - Implement UCR metric and optimize
-
-# --- Research Citations ---
-# Keep these references for your final project report:
-#
-# Core Papers:
-# [1] Dettmers et al. (2023). "QLoRA: Efficient Finetuning of Quantized LLMs"
-#     NeurIPS 2023. arXiv:2305.14314
-# [2] Hu et al. (2022). "LoRA: Low-Rank Adaptation of Large Language Models"
-#     ICLR 2022. arXiv:2106.09685
-#
-# Dialogue Evaluation:
-# [3] Zhang et al. (2018). "Personalizing Dialogue Agents: I have a dog, do you have pets too?"
-#     ACL 2018. arXiv:1801.07243
-# [4] Welleck et al. (2019). "Dialogue Natural Language Inference"
-#     arXiv:1811.00671
-# [5] Li et al. (2016). "A Diversity-Promoting Objective Function for Neural Conversation Models"
-#     NAACL 2016
-#
-# Instruction Tuning:
-# [6] Wei et al. (2021). "Finetuned Language Models Are Zero-Shot Learners" (FLAN)
-#     ICLR 2022
-# [7] "Parameter Efficient Instruction Tuning: An Empirical Study" (2024)
-#     arXiv:2411.16775
-#
-# Additional Resources:
-# - Unsloth Documentation: https://docs.unsloth.ai/
-# - Weights & Biases LLM Fine-tuning: https://wandb.ai/site/solutions/llm-fine-tuning/
-# - HuggingFace PEFT: https://github.com/huggingface/peft
