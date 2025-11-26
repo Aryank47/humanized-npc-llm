@@ -5,8 +5,8 @@ baseline_model:
   max_seq_length: 2048
 
 data:
-  test_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/processed/v2/test.jsonl"
-  tuned_model_path: "/content/drive/MyDrive/Colab Notebooks/GenAI/final_model"
+  test_file: "../data_engineering/data/processed/v2/test.jsonl"
+  tuned_model_path: "../fine_tuning/outputs/model/final_model"
 
 evaluation:
   # Set to 0 to evaluate all samples, or a positive number to limit for testing
@@ -36,7 +36,6 @@ evaluation:
     confidence_level: 0.95
 
 outputs:
-  generation_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/generations.jsonl"
-  report_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/final_report.json"
-  examples_file: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/examples.json"
-  visualizations_dir: "/content/drive/MyDrive/Colab Notebooks/GenAI/evaluation/outputs/results/visualizations"
+  generation_file: "./outputs/results/generations.jsonl"
+  report_file: "./outputs/results/final_report.json"
+  examples_file: "./outputs/results/examples.json"
