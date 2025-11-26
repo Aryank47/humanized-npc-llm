@@ -45,7 +45,7 @@ baseline_model:
 evaluation:
   # Use a small number (e.g., 1000). 
   # Use -1 to run on the full test set.
-  limit_samples: 100
+  limit_samples: 1000
 ```
 
 Navigate to the evaluation/ directory and run:
