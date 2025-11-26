@@ -45,7 +45,7 @@ evaluation:
 
 Navigate to the evaluation/ directory and run the main script:
 
-# Make sure you are in the 3_evaluation/ directory
+# Make sure you are in the evaluation/ directory
 python run_eval.py
 
 
