@@ -1,125 +1,59 @@
-# ============================================================================
-# NPC Dialogue Fine-Tuning Configuration - Research-Validated
-# ============================================================================
-# 
-# This configuration is validated by peer-reviewed research:
-# - QLoRA paper (Dettmers et al., NeurIPS 2023): arXiv:2305.14314
-# - LoRA paper (Hu et al., ICLR 2022): arXiv:2106.09685
-# - PersonaChat (Zhang et al., ACL 2018): arXiv:1801.07243
-# - Parameter Efficient Instruction Tuning (2024): arXiv:2411.16775
-# ============================================================================
-
 # --- Model Configuration ---
 base_model_id: "Qwen/Qwen2.5-3B-Instruct"
 output_dir: "./outputs/model/"
 
 # --- QLoRA Configuration (PEFT) ---
-# Research-backed values for 3B parameter models
-# Source: Dettmers et al. (NeurIPS 2023) + Hu et al. (ICLR 2022)
-
 lora_r: 16
-# Rationale: Optimal rank for 3B models. Hu et al. found diminishing returns 
-# above r=8, with r=16 providing good expressiveness without overfitting.
-# Tested range: 1-64, with r=4 achieving 73.7% and r=64 achieving 73.6% on WikiSQL.
+# A user-selected rank for the low-rank adaptation. Lower or higher ranks can be tried depending on compute/memory vs downstream performance. (LoRA supports low-rank updates.)  [oai_citation:1‡arXiv](https://arxiv.org/abs/2106.09685)
 
-lora_alpha: 32  # 2 * r
-# Rationale: Standard 2*r scaling factor. Controls magnitude of LoRA updates 
-# relative to frozen weights (α/r scaling). Popular implementations (Unsloth, 
-# HF PEFT) converge on this pattern for stable learning.
+lora_alpha: 32  # α = 2 * r
+# Scaling factor for the LoRA update. This is a common heuristic scaling, often used in LoRA/QLoRA implementations.  [oai_citation:2‡magazine.sebastianraschka.com](https://magazine.sebastianraschka.com/p/lora-and-dora-from-scratch)
 
 lora_dropout: 0.05
-# Rationale: QLoRA paper recommends 0.1 for ≤13B models and 0.05 for 33B+ models.
-# For 3B model with dialogue data (smaller dataset), 0.05 provides regularization
-# without excessive constraints on adaptation capacity.
 
 lora_target_modules: ["q_proj", "k_proj", "v_proj", "o_proj",
                       "gate_proj", "up_proj", "down_proj"]
-# CRITICAL: All attention + MLP layers (Dettmers et al., NeurIPS 2023)
-# This is THE most important hyperparameter decision per QLoRA research.
-# All-layer: 73.7% WikiSQL | Query-only: 70.4% WikiSQL
-# Targeting comprehensive layers essential for matching full fine-tuning performance.
+# Adapter placement: apply LoRA to all linear layers (attention + MLP/feed-forward) — this matches the “all-linear-layers” strategy used in QLoRA.  [oai_citation:3‡arXiv](https://arxiv.org/abs/2305.14314)
 
 # --- Training Hyperparameters ---
-# Validated for instruction tuning on 3B models
-
 num_train_epochs: 3
-# Rationale: Standard for instruction tuning (Wei et al., 2021 - FLAN).
-# Dialogue datasets typically need 2-3 epochs to prevent overfitting.
-# PersonaChat models used 3-5 epochs depending on dataset size.
-# MONITOR: If validation loss plateaus or increases at epoch 2, consider early stopping.
-# Research shows 2 epochs may suffice for high-quality dialogue data.
-
 batch_size: 2
-gradient_accumulation_steps: 8  # Effective batch size = 16
-# Rationale: QLoRA paper used batch size 16 for 7B and 13B models.
-# Typical range for 3B models: 8-32. Value of 16 balances memory efficiency
-# and convergence stability. "Unveiling the Secret Recipe" (2024) found larger 
-# batches + lower LR improve generalization.
+gradient_accumulation_steps: 8  # effective total batch size = 16
 
 learning_rate: 2.0e-4
-# Rationale: Empirically-validated default for 3-7B parameter models.
-# QLoRA: 2e-4 for 7B, 1e-4 for 33B+
-# Parameter Efficient Instruction Tuning (2024): optimal range 1e-4 to 4e-4
-# Unsloth documentation: 2e-4 standard starting point
-# Lower for larger models, higher for smaller - 3B sits optimally at 2e-4.
+# Base learning rate — a typical starting point for PEFT/QLoRA fine-tuning (subject to tuning).  [oai_citation:4‡Modal](https://modal.com/blog/lora-qlora)
 
 max_seq_length: 1024
-# Rationale: Balances context capacity with memory efficiency.
-# NPC dialogues rarely exceed 512 tokens, but 1024 provides headroom for
-# rich personas + world facts + dialogue history without truncation.
+# Context length — sufficient for prompts, dialogue history, and generation context.
 
 optimizer: "paged_adamw_8bit"
-# Rationale: QLoRA's memory-efficient optimizer recommendation.
-# Enables training larger batch sizes in limited memory (T4: 16GB).
+# Memory-efficient optimizer suitable when using 4-bit quantization + LoRA adapters. (As in QLoRA.)  [oai_citation:5‡arXiv](https://arxiv.org/abs/2305.14314)
 
 lr_scheduler_type: "cosine"
-# Rationale: Smooth decay prevents sharp performance drops at end of training.
-# Standard choice in recent instruction tuning literature.
-
 warmup_ratio: 0.03
-# Rationale: 3% warmup standard. QLoRA used 0.06 (6%), Parameter Efficient
-# Instruction Tuning used 0.03. Prevents instability in early training steps.
+# Warmup + scheduler — common fine-tuning heuristics. Their optimal values may vary depending on model, data, and compute.
 
-weight_decay: 0.01
-# Rationale: Standard AdamW L2 regularization value across HuggingFace implementations.
+weight_decay: 0.0
+# Since only adapter weights are updated (base model frozen), heavy regularization may not be necessary. Often weight decay is set low or zero in adapter-based fine-tuning.
 
 max_grad_norm: 1.0
-# Rationale: Conventional gradient clipping value prevents exploding gradients.
-# Standard across Transformers library.
+# Gradient clipping — good practice to avoid exploding gradients.
 
 mixed_precision: "bf16"
-# Rationale: Auto-selected based on GPU capability (bf16 for modern GPUs, fp16 fallback).
+# Use mixed precision (bf16) if hardware supports it, to reduce memory usage. Common in quantized + PEFT setups.  [oai_citation:6‡arXiv](https://arxiv.org/abs/2305.14314)
 
 gradient_checkpointing: true
-# Rationale: Essential for memory efficiency with QLoRA.
-# Trades computation for memory - minimal speed impact with significant memory savings.
+# Enables checkpointing to save memory during backprop — useful when GPU memory is constrained.
 
 # --- Dataset Paths ---
 train_data_file: "../data_engineering/data/processed/v2/train.jsonl"
 val_data_file: "../data_engineering/data/processed/v2/val.jsonl"
-
-# Expected dataset composition (based on your data generation):
-# - Training: ~75,000 samples (90% of 83k)
-# - Validation: ~4,150 samples (5% of 83k)
-# - Data mix: 46% game dialogue (Skyrim 26% + LIGHT 14% + ED 6%)
-#             54% persona/conversational (CharCodex 24% + SPC 18% + PersonaChat 12%)
 
 # --- Logging & Checkpointing ---
 wandb_project: "humanized-npc-llm"
 wandb_run_name: "Qwen2.5-3B-Full-Dataset-v1"
 
 logging_steps: 10
-# Log loss and metrics every 10 steps for granular monitoring.
-
 eval_steps: 200
-# Evaluate every 200 steps (approximately every 3% of training).
-# With ~4,688 steps/epoch → ~23 evaluations per epoch.
-# Enables early detection of overfitting or quality issues.
-
 save_steps: 200
-# Save checkpoint every 200 steps aligned with evaluation.
-# Creates recovery points and enables checkpoint selection based on eval metrics.
-
 save_total_limit: 3
-# Keep best checkpoint + 2 most recent for recovery options.
-# Prevents disk space issues while maintaining flexibility.
