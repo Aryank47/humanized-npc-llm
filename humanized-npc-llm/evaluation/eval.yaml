@@ -39,3 +39,4 @@ outputs:
   generation_file: "./outputs/results/generations.jsonl"
   report_file: "./outputs/results/final_report.json"
   examples_file: "./outputs/results/examples.json"
+  visualizations_dir: "../outputs/results/visualizations"
