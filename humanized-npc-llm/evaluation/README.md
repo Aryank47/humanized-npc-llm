@@ -22,22 +22,22 @@ pip install -r requirements.txt
 
 All settings are controlled by evaluation/eval.yaml. Before running, verify these paths:
 
-# evaluation/eval.yaml
+evaluation/eval.yaml
 
 data:
-  # Path to your test set from Task 1
+  Path to your test set from Task 1
   test_file: "../data_engineering/data/processed/v2/test.jsonl"
     
-  # Path to your fine-tuned adapters from Task 2
+  Path to your fine-tuned adapters from Task 2
   tuned_model_path: "../fine_tuning/outputs/model/final_model" 
 
 baseline_model:
-  # The *base model ID* you used for training
+  The *base model ID* you used for training
   id: "Qwen/Qwen2.5-3B-Instruct" 
 
 evaluation:
-  # Use a small number (e.g., 1000).
-  # Use -1 to run on the full test set.
+  Use a small number (e.g., 1000).
+  Use -1 to run on the full test set.
   limit_samples: 100 
 
 
@@ -45,7 +45,7 @@ evaluation:
 
 Navigate to the evaluation/ directory and run the main script:
 
-# Make sure you are in the evaluation/ directory
+Make sure you are in the evaluation/ directory
 python run_eval.py
 
 
