@@ -15,5 +15,4 @@ Key Features:
 - Production-ready: <80 token responses, <200ms latency
 - Comprehensive evaluation: Persona consistency, hallucination control, NPC authenticity
 
-Datasets: PersonaChat, Synthetic-Persona-Chat, CharacterCodex, LIGHT, 
-EmpatheticDialogues, Skyrim transcripts (research use)
+Datasets: Synthetic-Persona-Chat, LIGHT and all data from https://www.imperial-library.info/out-of-game/game-data
