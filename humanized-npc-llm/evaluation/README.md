@@ -51,6 +51,8 @@ Navigate to the evaluation/ directory and run:
 
 python run_eval.py
 
+python visualization.py
+
 ```
 
 What to Expect:
