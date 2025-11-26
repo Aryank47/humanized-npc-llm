@@ -1,3 +1,7 @@
+# Note: Hyperparameters below are reasonable defaults inspired by LoRA/QLoRA literature
+# and practitioner blogs. They were chosen as starting points, not as proven optimal
+# settings for this specific dataset or model.
+
 # --- Model Configuration ---
 base_model_id: "Qwen/Qwen2.5-3B-Instruct"
 output_dir: "./outputs/model/"
